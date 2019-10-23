@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CS 180 Scheduling App</title>
+		<script src="firebase.js"></script>
+	</head>
+	<body>
+	<h1 id="bigOne">Schedule</h1>
+	
+	<!-- The core Firebase JS SDK -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-firestore.js"></script>
+
+	<!-- TODO: Add SDKs for Firebase products that you want to use
+		 https://firebase.google.com/docs/web/setup#available-libraries -->
+	<script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script>
+
+	<script>
+	  // Your web app's Firebase configuration
+	  var firebaseConfig = {
+		apiKey: "AIzaSyAmcdm-nCXD4ahr4EwKddfHQ_vpqkMEPWA",
+		authDomain: "cs180-schedulingapp.firebaseapp.com",
+		databaseURL: "https://cs180-schedulingapp.firebaseio.com",
+		projectId: "cs180-schedulingapp",
+		storageBucket: "cs180-schedulingapp.appspot.com",
+		messagingSenderId: "350264880268",
+		appId: "1:350264880268:web:4fb4718431afc39b6e9fa9",
+		measurementId: "G-DBB71H8E8J"
+	  };
+	  // Initialize Firebase
+	  firebase.initializeApp(firebaseConfig);
+	  firebase.analytics();
+	  
+	  var bigOne = document.getELementById('bigOne');
+	  var dbRef = firebase.database().ref().child('text');
+	  dbRef.on('value', snap => bigOne.innerText = snap.val());
+
+	</script>
+	</body>
+</html>
