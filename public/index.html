@@ -1,68 +1,64 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>CS 180 Scheduling App</title>
-		<!-- The core Firebase JS SDK -->
-		<script src="/__/firebase/7.2.1/firebase-app.js"></script>
-		<!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
-		<script src="/__/firebase/7.2.1/firebase-auth.js"></script>
-		<script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
-		<script src="/__/firebase/7.2.1/firebase-messaging.js"></script>
-		<script src="/__/firebase/7.2.1/firebase-database.js"></script>
-		<script src="/__/firebase/7.2.1/firebase-firestore.js"></script>
-		<!-- Initialize Firebase -->
-		<script src="/__/firebase/init.js"></script>
-		<!-- Initialize the sign-in widget from FirebaseUI web -->
-		<script src="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.js"></script>
-		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.2.0/firebaseui.css" />
-		<script>
-			// FirebaseUI config.
-			var uiConfig = {
-				callbacks: {
-					signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-						// User successfully signed in. Return type determines whether
-						// we continue the redirect automatically or whether we leave 
-						// that to developer to handle.
-						return true;
-					},
-					uiShown: function() {
-						// The widget is rendered.
-						// Hide the loader.
-						document.getElementById('loader').style.display = 'none';
-					}
-				},
-				signInSuccessUrl: '<url-to-redirect-to-on-success>',
-				signInOptions: [
-				  // Leave the lines as is for the providers you want to offer your users.
-			      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-				  firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-				  firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-				  firebase.auth.EmailAuthProvider.PROVIDER_ID,
-				  firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-				  firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-				],
-				// tosUrl and privacyPolicyUrl accept either url string or a callback
-				// function.
-				// Terms of service url/callback.
-				tosUrl: '<your-tos-url>',
-				// Privacy policy url/callback.
-				privacyPolicyUrl: function() {
-				  window.location.assign('<your-privacy-policy-url>');
-				}
-			};
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduling Web App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+    <div id="container">
+        <h3>Welcome to the Web Scheduling App</h3>
+        <div id="loading">Loading...</div>
+        <div id="loaded" class="hidden">
+            <div id="main">
+                <div id="user-signed-in" class="hidden">
+                    <div id="user-info">
+                        <div id="photo-container">
+                            <img id="photo">
+                        </div>
+                        <div id="name"></div>
+                        <div id="email"></div>
+                        <div id="phone"></div>
+                        <div id="is-new-user"></div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <p>
+                        <button id="sign-out">Sign Out</button>
+                        <button id="delete-account">Delete account</button>
+                    </p>
+                </div>
+                <div id="user-signed-out" class="hidden">
+                    <h4>You are signed out.</h4>
+                    <!--
+                    <p>
+                        <button id="sign-in-with-redirect">Sign In with Redirect</button>
+                        <button id="sign-in-with-popup">Sign In with Popup</button>
+                    </p>
+                    -->
+                    <div id="firebaseui-spa">
+                        <h5>Single Page Application mode:</h5>
+                        <div id="firebaseui-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-			// Initialize the FirebaseUI Widget using Firebase.
-			var ui = new firebaseui.auth.AuthUI(firebase.auth());
-			// The start method will wait until the DOM is loaded.
-			ui.start('#firebaseui-auth-container', uiConfig);
-		</script>
-	</head>
-	<body>
-		<h1>Welcome to the Scheduling App</h1>
-		<div id="firebaseui-auth-container"></div>
-		
-		<script src="app.js"></script>
-		
-	</body>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="/__/firebase/7.2.1/firebase-app.js"></script>
+    <!-- Initialize Firebase -->
+    <script src="config.js"></script>
+    <script src="/__/firebase/init.js"></script>
+    <!-- Firebase products list
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-auth.js"></script>
+    <script src="/__/firebase/7.2.1/firebase-database.js"></script>
+    <script src="app.js"></script>
+
+</body>
 </html>
